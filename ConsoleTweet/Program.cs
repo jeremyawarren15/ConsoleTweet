@@ -30,7 +30,19 @@ namespace ConsoleTweet
             Auth.SetUserCredentials(credentials[0], credentials[1], credentials[2], credentials[3]);
             var user = User.GetAuthenticatedUser();
 
-            Console.WriteLine(user.Name);
+            
+
+            while (true)
+            {
+                // Ask for something to search
+                Console.Write("What would you like to search? ");
+                var matchingTweets = Search.SearchTweets(Console.ReadLine());
+                foreach (var t in matchingTweets)
+                {
+                    Console.WriteLine("User: " + t.CreatedBy);
+                    Console.WriteLine(t.FullText + "\n");
+                }
+            }
         }
 
         public static List<string> GetCredentials()
